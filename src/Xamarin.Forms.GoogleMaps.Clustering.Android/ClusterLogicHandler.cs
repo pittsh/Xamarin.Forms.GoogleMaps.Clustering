@@ -1,4 +1,7 @@
 ﻿using Com.Google.Maps.Android.Clustering;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 {
@@ -35,7 +38,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             {
                 if (!ReferenceEquals(targetPin, map.SelectedPin))
                     map.SelectedPin = targetPin;
-                map.SendPinClicked(targetPin);
+                return map.SendPinClicked(targetPin);
             }
 
             return false;
