@@ -228,7 +228,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         private bool HandleGmsTappedMarker(MapView mapView, Marker marker)
         {
             if (marker?.UserData is ICluster cluster)
-                return ClusteredMap.SendClusterClicked((int) cluster.Count);
+                return ClusteredMap.SendClusterClicked(cluster.Items);
             var targetPin = LookupPin(marker);
 
             if (Map.SendPinClicked(targetPin))

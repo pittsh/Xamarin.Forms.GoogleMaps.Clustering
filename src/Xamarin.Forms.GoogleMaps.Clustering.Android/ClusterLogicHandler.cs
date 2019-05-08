@@ -24,7 +24,14 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 
         public bool OnClusterClick(ICluster cluster)
         {
-            map.SendClusterClicked(cluster.Items.Count);
+            var pins = new List<Pin>();
+            foreach (var item in cluster.Items)
+            {
+                var pin = logic.LookupPin(item as ClusteredMarker);
+                pins.Add(pin);
+            }
+
+            map.SendClusterClicked(pins);
             return false;
         }
 

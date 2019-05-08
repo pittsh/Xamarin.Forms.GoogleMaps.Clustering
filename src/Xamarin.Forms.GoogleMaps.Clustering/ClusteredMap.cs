@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -45,9 +46,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
             }
         }
         
-        internal bool SendClusterClicked(int itemsCount)
+        internal bool SendClusterClicked(IEnumerable<Pin> items)
         {
-            var args = new ClusterClickedEventArgs(itemsCount);
+            var args = new ClusterClickedEventArgs(items);
             ClusterClicked?.Invoke(this, args);
             return args.Handled;
         }
