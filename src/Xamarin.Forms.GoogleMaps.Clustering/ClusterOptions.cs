@@ -21,6 +21,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         ///     Please note that the usage of buckets is HIGHLY RECOMMENDED, since the system caches the cluster icons.
         ///     So, instead of having 1...N icons being generated, you'll mave maximum {buckets.Length} icons.
         /// </example>
+        /// 
+
+        public int MinClusterSize { get; set; }
         public bool EnableBuckets { get; set; }
 
         /// <summary>
@@ -60,6 +63,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
             EnableBuckets = true;
             RendererImage = null;
             RendererCallback = null;
+            MinClusterSize = 1;
             ResetBuckets();
         }
 

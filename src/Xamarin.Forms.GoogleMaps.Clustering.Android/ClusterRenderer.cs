@@ -16,6 +16,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         private readonly Dictionary<string, NativeBitmapDescriptor> disabledBucketsCache;
         private readonly Dictionary<string, NativeBitmapDescriptor> enabledBucketsCache;
 
+
         public ClusterRenderer(Context context,
             ClusteredMap map,
             GoogleMap nativeMap,
@@ -25,6 +26,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             this.map = map;
             disabledBucketsCache = new Dictionary<string, NativeBitmapDescriptor>();
             enabledBucketsCache = new Dictionary<string, NativeBitmapDescriptor>();
+            MinClusterSize = map.ClusterOptions.MinClusterSize;
         }
 
         public void SetUpdateMarker(ClusteredMarker clusteredMarker)
