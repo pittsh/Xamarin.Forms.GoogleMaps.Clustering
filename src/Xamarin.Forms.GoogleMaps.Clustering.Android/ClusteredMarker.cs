@@ -39,6 +39,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         
         public int ZIndex { get; set; }
 
+        public object Tag { get; set; }
+
         public ClusteredMarker(Pin outerItem)
         {
             Id = Guid.NewGuid().ToString();
@@ -55,6 +57,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             Alpha = 1f - outerItem.Transparency;
             Visible = outerItem.IsVisible;
             ZIndex = outerItem.ZIndex;
+            Tag = outerItem.Tag;
         }
     }
 }
