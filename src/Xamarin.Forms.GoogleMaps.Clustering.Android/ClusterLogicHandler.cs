@@ -31,8 +31,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 pins.Add(pin);
             }
 
-            map.SendClusterClicked(pins);
-            return false;
+            return map.SendClusterClicked(pins);
         }
 
         public bool OnClusterItemClick(Java.Lang.Object nativeItemObj)
