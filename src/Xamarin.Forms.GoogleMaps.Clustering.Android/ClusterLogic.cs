@@ -66,6 +66,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             ClusteredMap.OnCluster = HandleClusterRequest;
 
             NativeMap.CameraIdle += NativeMapOnCameraIdle;
+            NativeMap.MyLocationChange += handleLocationChange;
             NativeMap.SetOnMarkerClickListener(clusterManager);
             NativeMap.SetOnInfoWindowClickListener(clusterManager);
             newNativeMap.MarkerDragStart += OnMarkerDragStart;
@@ -83,7 +84,12 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             clusterManager.SetOnClusterItemClickListener(clusterHandler);
             clusterManager.SetOnClusterItemInfoWindowClickListener(clusterHandler);
         }
-
+        void handleLocationChange(object sender, GoogleMap.MyLocationChangeEventArgs e)
+        {
+            var userLocation = e.Location;
+            Position position = new Position(userLocation.Latitude, userLocation.Longitude);
+            ClusteredMap.SendUserLocation(position);         
+        }
         private IAlgorithm GetClusterAlgorithm()
         {
             IAlgorithm algorithm;
