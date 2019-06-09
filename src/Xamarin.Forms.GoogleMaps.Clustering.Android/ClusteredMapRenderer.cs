@@ -7,6 +7,7 @@ using Android.Gms.Maps.Model;
 using Xamarin.Forms.GoogleMaps.Android;
 using Xamarin.Forms.GoogleMaps.Logics;
 using Xamarin.Forms.GoogleMaps.Logics.Android;
+using Xamarin.Forms.GoogleMaps.Clustering;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 {

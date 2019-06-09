@@ -44,7 +44,7 @@ namespace XFGoogleMapSample
 
         private async void MapOnClusterClicked(object sender, ClusterClickedEventArgs e)
         {
-            await DisplayAlert("Cluster clicked", $"{e.ItemsCount} pins", "Cancel");
+            await DisplayAlert("Cluster clicked", $"{e.Items} pins", "Cancel");
         }
 
         private async void MapOnPinClicked(object sender, PinClickedEventArgs e)

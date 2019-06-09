@@ -199,6 +199,11 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             var associatedClusteredMarker = marker.UserData;
             return GetItems(Map).FirstOrDefault(outerItem => ReferenceEquals(outerItem.NativeObject, associatedClusteredMarker));
         }
+        private Pin LookupPin(ClusterItem marker)
+        {
+            var associatedClusteredMarker = marker.UserData;
+            return GetItems(Map).FirstOrDefault(outerItem => ReferenceEquals(outerItem.NativeObject, associatedClusteredMarker));
+        }
 
         private void HandleClusterRequest()
         {
@@ -228,7 +233,14 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         private bool HandleGmsTappedMarker(MapView mapView, Marker marker)
         {
             if (marker?.UserData is ICluster cluster)
+            {
+                foreach (var item in cluster.Items)
+                {
+                    var pin = LookupPin(item as ClusteredMarker);
+                    pins.Add(pin);
+                }
                 return ClusteredMap.SendClusterClicked(cluster.Items);
+            }
             var targetPin = LookupPin(marker);
 
             if (Map.SendPinClicked(targetPin))

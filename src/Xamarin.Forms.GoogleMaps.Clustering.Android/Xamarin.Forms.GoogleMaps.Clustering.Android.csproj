@@ -16,8 +16,7 @@
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -174,6 +173,7 @@
     <ProjectReference Include="..\Xamarin.Forms.GoogleMaps.Android.Utils\Xamarin.Forms.GoogleMaps.Android.Utils.csproj">
       <Project>{f38a2b58-0051-4e72-adf9-9305ad4274a8}</Project>
       <Name>Xamarin.Forms.GoogleMaps.Android.Utils</Name>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </ProjectReference>
     <ProjectReference Include="..\Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj">
       <Project>{5542cbe9-1858-46a1-888f-cfbf8f05cffe}</Project>
