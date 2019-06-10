@@ -1,17 +1,21 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering
 {
     public sealed class ClusterClickedEventArgs : EventArgs
     {
-        public bool Handled { get; set; } = false;
-        public IEnumerable<Pin> Items { get; }
+        public int ItemsCount { get; }
 
-        internal ClusterClickedEventArgs(IEnumerable<Pin> items)
+        public IEnumerable<Pin> Pins { get; }
+
+        public Position Position { get; }
+
+        internal ClusterClickedEventArgs(int itemsCount, IEnumerable<Pin> pins, Position position)
         {
-            Items = items;
+            ItemsCount = itemsCount;
+            Pins = pins;
+            Position = position;
         }
     }
 }

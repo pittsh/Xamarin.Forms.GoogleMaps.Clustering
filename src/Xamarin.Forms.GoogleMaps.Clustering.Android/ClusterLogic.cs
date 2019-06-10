@@ -36,6 +36,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 
         private global::Android.Gms.Maps.Model.CameraPosition previousCameraPostion;
         private ClusterRenderer clusterRenderer;
+        
+        private readonly Dictionary<string, Pin> itemsDictionary = new Dictionary<string, Pin>();
+
 
         public ClusteredMap ClusteredMap => (ClusteredMap) Map;
 
@@ -191,6 +194,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             outerItem.NativeObject = marker;
             onMarkerCreated(outerItem, marker);
             clusterManager.AddItem(marker);
+            itemsDictionary.Add(marker.Id, outerItem);
         }
 
         protected override ClusteredMarker DeleteNativeItem(Pin outerItem)
@@ -205,6 +209,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             if (ReferenceEquals(Map.SelectedPin, outerItem))
                 Map.SelectedPin = null;
 
+            itemsDictionary.Remove(marker.Id);
             onMarkerDeleted(outerItem, marker);
             return marker;
         }
@@ -230,7 +235,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         
         public Pin LookupPin(ClusteredMarker marker)
         {
-            return GetItems(Map).FirstOrDefault(outerItem => ((ClusteredMarker)outerItem.NativeObject).Id == marker.Id);
+            var markerId = marker.Id;
+            return markerId != null ? itemsDictionary[markerId] : null;
         }
         
         public void HandleClusterRequest()

@@ -23,7 +23,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         {
             ClusterOptions = new ClusterOptions();
         }
-        
+
         public ClusterOptions ClusterOptions
         {
             get => (ClusterOptions)GetValue(ClusterOptionsProperty);
@@ -34,25 +34,19 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         {
             SendCluster();
         }
-        
+
         private void SendCluster()
         {
             if (OnCluster != null)
-            {
                 OnCluster.Invoke();
-            }
             else
-            {
                 PendingClusterRequest = true;
-            }
         }
 
-      
-        internal bool SendClusterClicked(IEnumerable<Pin> items)
+        internal void SendClusterClicked(int itemsCount, IEnumerable<Pin> pins, Position position)
         {
-            var args = new ClusterClickedEventArgs(items);
+            var args = new ClusterClickedEventArgs(itemsCount, pins, position);
             ClusterClicked?.Invoke(this, args);
-            return args.Handled;
         }
         internal bool SendUserLocation(Position position)
         {

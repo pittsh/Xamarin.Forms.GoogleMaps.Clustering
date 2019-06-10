@@ -24,20 +24,28 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 
         public bool OnClusterClick(ICluster cluster)
         {
+            var pins = GetClusterPins(cluster);
+            var clusterPosition = new Position(cluster.Position.Latitude, cluster.Position.Longitude);
+            return  map.SendClusterClicked(cluster.Items.Count, pins, clusterPosition);
+            return false;
+        }
+
+        private List<Pin> GetClusterPins(ICluster cluster)
+        {
             var pins = new List<Pin>();
             foreach (var item in cluster.Items)
             {
-                var pin = logic.LookupPin(item as ClusteredMarker);
-                pins.Add(pin);
+                var clusterItem = (ClusteredMarker) item;
+                pins.Add(logic.LookupPin(clusterItem));
             }
 
-            return map.SendClusterClicked(pins);
+            return pins;
         }
 
         public bool OnClusterItemClick(Java.Lang.Object nativeItemObj)
         {
             var targetPin = logic.LookupPin(nativeItemObj as ClusteredMarker);
-           
+
             targetPin?.SendTap();
 
             if (targetPin != null)
@@ -58,7 +66,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         public void OnClusterItemInfoWindowClick(Java.Lang.Object nativeItemObj)
         {
             var targetPin = logic.LookupPin(nativeItemObj as ClusteredMarker);
-           
+
             targetPin?.SendTap();
 
             if (targetPin != null)
