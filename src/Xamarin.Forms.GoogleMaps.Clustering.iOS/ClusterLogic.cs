@@ -236,8 +236,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             {
                 var pins = GetClusterPins(cluster);
                 var clusterPosition = new Position(cluster.Position.Latitude, cluster.Position.Longitude);
-                ClusteredMap.SendClusterClicked((int) cluster.Count, pins, clusterPosition);
-                return true;
+                return ClusteredMap.SendClusterClicked((int) cluster.Count, pins, clusterPosition);
             }
             var targetPin = LookupPin(marker);
 
